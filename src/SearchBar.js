@@ -31,7 +31,6 @@ class SearchBar extends Component{
 					<input type="checkbox" />Only show products in stock.
 				</div>
 				<button className="btn btn-primary">Search!</button>
-				{uniqueCategoryLinks}
 			</form>
 		);
 	}

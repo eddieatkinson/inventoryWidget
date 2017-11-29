@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import logo from './logo.svg';
 // import './App.css';
 import products from './products.js';
+import ProductCategoryRow from './ProductCategoryRow';
 // console.log(products)
 
 class Table extends Component {
@@ -36,6 +37,7 @@ class Table extends Component {
 		var rows = [];
 		for(var key in this.state.productsByCategory){
 			console.log(this.state.productsByCategory[key]);
+			rows.push(<ProductCategoryRow header={key} />);
 		}
 		return(
 			<div className="product-table">
@@ -47,6 +49,7 @@ class Table extends Component {
 						</tr>
 					</thead>
 					<tbody>
+					{rows}
 					</tbody>
 				</table>
 			</div>
