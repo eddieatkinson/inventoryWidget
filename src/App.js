@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import products from './products.js';
-// import SearchBar from './SearchBar';
+import SearchBar from './SearchBar';
 import Table from './Table';
 
 class App extends Component {
@@ -16,7 +16,7 @@ class App extends Component {
 	searchHandler(event){
 		event.preventDefault();
 		var value = document.getElementById('searchTerm').value;
-		console.log(`User entered: ${value}!`);
+		// console.log(`User entered: ${value}!`);
 	}
 
 	filterHandler(){
@@ -24,7 +24,7 @@ class App extends Component {
 	}
 
 	componentDidMount(){
-		console.log("The component mounted.");
+		// console.log("The component mounted.");
 		// this.setState({
 		// 	myProducts: products.data
 		// });
@@ -34,12 +34,12 @@ class App extends Component {
 		var theProducts = this.state.myProducts.map((product)=>{
 			return(product)
 		});
-		console.log(`The products: ${theProducts}`)
+		// console.log(`The products: ${theProducts}`)
 		var uniqueCategories = []
 		this.state.myProducts.map((product)=>{
 			if(uniqueCategories.indexOf(product.category) === -1){
 				uniqueCategories.push(product.category);
-				console.log("New one!")
+				// console.log("New one!")
 			}
 			return null
 		});
@@ -49,14 +49,8 @@ class App extends Component {
 		// console.log(`uniqueCategoryLinks = ${uniqueCategoryLinks}`)
 		// console.log(`Unique Categories = ${uniqueCategories}`);
 		return(
-			<div className="App">
-				<div className="searchBar">
-					<form onSubmit={this.searchHandler}>
-						<input id="searchTerm" type="text" placeholder="Search" />
-						<button className="btn btn-primary">Search!</button>
-						{uniqueCategoryLinks}
-					</form>
-				</div>
+			<div className="App container">
+				<SearchBar />
 				<div className="table">
 					<Table productsArr={theProducts} />
 				</div>

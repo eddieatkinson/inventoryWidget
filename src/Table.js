@@ -1,18 +1,55 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 // import './App.css';
-// import products from './products.js';
+import products from './products.js';
+// console.log(products)
 
 class Table extends Component {
-	render() {
-		var productsArray = this.props.productsArr.map((product, index)=>{
-			return(<div>
-						<div key={index + 1} className="col-sm-6">{product.name}</div>
-						<div key={-index} className="col-sm-6">{product.price}</div>
-				   </div>);
+	constructor(){
+		super();
+		this.products = products;
+		this.state = {
+			productsByCategory: {}
+		}
+	}
+
+	componentDidMount(){
+		this.formatData();
+	}
+
+	formatData(){
+		var tempProducts = {};
+		this.products.data.map((product)=>{
+			// console.log(product.category);
+			if(tempProducts[product.category] === undefined){
+				tempProducts[product.category] = [];
+			}
+			tempProducts[product.category].push(product);
 		});
+		// console.log(tempProducts);
+		this.setState({
+			productsByCategory: tempProducts
+		});
+	}
+
+	render() {
+		var rows = [];
+		for(var key in this.state.productsByCategory){
+			console.log(this.state.productsByCategory[key]);
+		}
 		return(
-			productsArray
+			<div className="product-table">
+				<table className="table table-striped">
+					<thead>
+						<tr>
+							<th>Product</th>
+							<th>Price</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
 		);
 	}
 }

@@ -5,13 +5,7 @@ module.exports = {
 			price: '$49.99',
 			name: 'Football',
 			inStock: true
-		},
-		// {
-		// 	category: 'Junk',	
-		// 	price: '$49.99',
-		// 	name: 'Football',
-		// 	inStock: true
-		// },	
+		},	
 		{
 			category: 'Sporting Goods',	
 			price: '$9.99',
