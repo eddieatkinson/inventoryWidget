@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 // import './App.css';
 import products from './products.js';
 import ProductCategoryRow from './ProductCategoryRow';
+import ProductRow from './ProductRow';
 // console.log(products)
 
 class Table extends Component {
@@ -26,6 +27,7 @@ class Table extends Component {
 				tempProducts[product.category] = [];
 			}
 			tempProducts[product.category].push(product);
+			return null;
 		});
 		// console.log(tempProducts);
 		this.setState({
@@ -35,16 +37,22 @@ class Table extends Component {
 
 	render() {
 		var rows = [];
+		// Outer for loop is going through the categories.
 		for(var key in this.state.productsByCategory){
 			console.log(this.state.productsByCategory[key]);
-			rows.push(<ProductCategoryRow header={key} />);
+			rows.push(<ProductCategoryRow key={key} header={key} />);
+			// Internal map through the category.
+			this.state.productsByCategory[key].map((item, index)=>{
+				rows.push(<ProductRow key={index + item.name} item={item} />);
+				return null;
+			});
 		}
 		return(
 			<div className="product-table">
 				<table className="table table-striped">
 					<thead>
 						<tr>
-							<th>Product</th>
+							<th>Name</th>
 							<th>Price</th>
 						</tr>
 					</thead>
