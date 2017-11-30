@@ -10,12 +10,27 @@ class Table extends Component {
 	constructor(){
 		super();
 		this.products = products;
+		this.safeProductData = products;
 		this.state = {
 			productsByCategory: {}
 		}
 	}
 
 	componentDidMount(){
+		this.formatData();
+	}
+
+	componentWillReceiveProps(newProps){
+		const searchTerm = newProps.searchTerm.toLowerCase();
+		var tempProducts = [];
+		this.safeProductData.data.map((item)=>{
+			var itemName = item.name.toLowerCase();
+			if(itemName.indexOf(searchTerm) !== -1){
+				tempProducts.push(item);
+			}
+			return null
+		});
+		this.products.data = tempProducts;
 		this.formatData();
 	}
 
@@ -36,10 +51,11 @@ class Table extends Component {
 	}
 
 	render() {
+		// console.log(this.props.searchTerm);
 		var rows = [];
 		// Outer for loop is going through the categories.
 		for(var key in this.state.productsByCategory){
-			console.log(this.state.productsByCategory[key]);
+			// console.log(this.state.productsByCategory[key]);
 			rows.push(<ProductCategoryRow key={key} header={key} />);
 			// Internal map through the category.
 			this.state.productsByCategory[key].map((item, index)=>{

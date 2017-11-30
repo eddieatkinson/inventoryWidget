@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import products from './products.js';
+// import products from './products.js';
 import SearchBar from './SearchBar';
 import Table from './Table';
 
@@ -9,8 +9,9 @@ class App extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			myProducts: products.data
+			searchTerm: ""
 		}
+		this.handleFilterChange = this.handleFilterChange.bind(this);
 	}
 
 	// searchHandler(event){
@@ -19,18 +20,15 @@ class App extends Component {
 	// 	// console.log(`User entered: ${value}!`);
 	// }
 
-	filterHandler(){
-		
-	}
-
-	componentDidMount(){
-		// console.log("The component mounted.");
-		// this.setState({
-		// 	myProducts: products.data
-		// });
+	handleFilterChange(newValue){
+		this.setState({
+			searchTerm: newValue
+		});
+		console.log('My child component ran me.');
 	}
 
 	render() {
+		const searchTerm = this.state.searchTerm;
 		// var theProducts = this.state.myProducts.map((product)=>{
 		// 	return(product)
 		// });
@@ -50,9 +48,9 @@ class App extends Component {
 		// console.log(`Unique Categories = ${uniqueCategories}`);
 		return(
 			<div className="App container">
-				<SearchBar />
+				<SearchBar searchTerm={searchTerm} onChange={this.handleFilterChange} />
 				<div className="table">
-					<Table />
+					<Table searchTerm={searchTerm} />
 				</div>
 			</div>
 		);

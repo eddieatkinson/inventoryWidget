@@ -13,14 +13,15 @@ class SearchBar extends Component{
 		this.handleChange = this.handleChange.bind(this);
 	}
 	handleChange(event){
-		this.setState({
-			searchTerm: event.target.value
-		})
+		this.props.onChange(event.target.value);
+		// this.setState({
+		// 	searchTerm: event.target.value
+		// })
 		// var value = document.getElementById('searchTerm').value;
 		// console.log(`User entered: ${value}!`);
 	}
 	render(){
-		const searchTerm = this.state.searchTerm;
+		const searchTerm = this.props.searchTerm;
 		// var uniqueCategories = []
 		// products.data.map((product)=>{
 		// 	if(uniqueCategories.indexOf(product.category) === -1){
@@ -40,7 +41,6 @@ class SearchBar extends Component{
 				<div>
 					<input value={searchTerm} type="checkbox" />Only show products in stock.
 				</div>
-				<button className="btn btn-primary">Search!</button>
 			</form>
 		);
 	}
