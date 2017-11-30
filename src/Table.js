@@ -10,7 +10,8 @@ class Table extends Component {
 	constructor(){
 		super();
 		this.products = products;
-		this.safeProductData = products;
+		// this.safeProductData = Object.assign({}, products);
+		this.safeProductData = {...products}; // "Spread" syntax
 		this.state = {
 			productsByCategory: {}
 		}
