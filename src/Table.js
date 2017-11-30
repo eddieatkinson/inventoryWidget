@@ -24,13 +24,25 @@ class Table extends Component {
 	componentWillReceiveProps(newProps){
 		const searchTerm = newProps.searchTerm.toLowerCase();
 		var tempProducts = [];
-		this.safeProductData.data.map((item)=>{
-			var itemName = item.name.toLowerCase();
-			if(itemName.indexOf(searchTerm) !== -1){
-				tempProducts.push(item);
-			}
-			return null
-		});
+		const inStock = newProps.inStock;
+		if(inStock){
+			this.safeProductData.data.map((item)=>{
+				if(item.inStock){
+					var itemName = item.name.toLowerCase();
+					if(itemName.indexOf(searchTerm) !== -1){
+						tempProducts.push(item);
+					}
+				}
+				return null
+			});
+		}else{this.safeProductData.data.map((item)=>{
+				var itemName = item.name.toLowerCase();
+				if(itemName.indexOf(searchTerm) !== -1){
+					tempProducts.push(item);
+				}
+				return null
+			});
+		}
 		this.products.data = tempProducts;
 		this.formatData();
 	}

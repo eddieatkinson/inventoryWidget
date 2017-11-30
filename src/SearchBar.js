@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
 // import logo from './logo.svg';
 // import './App.css';
 // import products from './products.js';
@@ -7,10 +8,11 @@ import React, { Component } from 'react';
 class SearchBar extends Component{
 	constructor(){
 		super();
-		this.state = {
-			searchTerm: ""
-		}
+		// this.state = {
+		// 	searchTerm: ""
+		// }
 		this.handleChange = this.handleChange.bind(this);
+		this.checkCheck = this.checkCheck.bind(this);
 	}
 	handleChange(event){
 		this.props.onChange(event.target.value);
@@ -20,8 +22,12 @@ class SearchBar extends Component{
 		// var value = document.getElementById('searchTerm').value;
 		// console.log(`User entered: ${value}!`);
 	}
+	checkCheck(event){
+		// console.log($('#checkbox').prop('checked'));
+		this.props.onCheck($('#checkbox').prop('checked'));
+	}
 	render(){
-		const searchTerm = this.props.searchTerm;
+		// const searchTerm = this.props.searchTerm;
 		// var uniqueCategories = []
 		// products.data.map((product)=>{
 		// 	if(uniqueCategories.indexOf(product.category) === -1){
@@ -39,7 +45,7 @@ class SearchBar extends Component{
 			<form className="search-bar">
 				<input onChange={this.handleChange} id="searchTerm" type="text" placeholder="Search..." />
 				<div>
-					<input value={searchTerm} type="checkbox" />Only show products in stock.
+					<input id="checkbox" onChange={this.checkCheck} type="checkbox" />Only show products in stock.
 				</div>
 			</form>
 		);
