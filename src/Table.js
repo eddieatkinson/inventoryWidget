@@ -78,7 +78,7 @@ class Table extends Component {
 		}
 		return(
 			<div className="product-table">
-				<table className="table table-striped">
+				<table className="table table-striped table-hover">
 					<thead>
 						<tr>
 							<th>Name</th>
