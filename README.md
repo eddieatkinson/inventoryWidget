@@ -2,7 +2,7 @@
 This simple site allows a user to view, search, and filter a sample inventory set.
 
 ## Github Link:
-[Inventory widget](https://github.com/eddieatkinson/inventory-widget)
+[Inventory widget](https://github.com/eddieatkinson/inventoryWidget)
 
 ## Technologies used:
 **Languages**
